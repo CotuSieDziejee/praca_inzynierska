@@ -15,9 +15,11 @@ import { GeneratorComponent } from './generator/generator.component';
 import { HeaderComponent } from './shared/components/header/header.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
 import { SidebarComponent } from './shared/components/sidebar/sidebar.component';
-import { MatDividerModule, MatIconModule, MatMenuModule, MatSidenavModule, MatToolbarModule, MatListModule, MatButtonModule } from '@angular/material';
+import { MatDividerModule, MatIconModule, MatMenuModule, MatSidenavModule, MatToolbarModule, MatListModule, MatButtonModule, MatCardModule } from '@angular/material';
 import { FlexLayoutModule, StyleUtils, StylesheetMap, LayoutStyleBuilder, MediaMarshaller, LayoutAlignStyleBuilder, LayoutGapStyleBuilder, FlexStyleBuilder } from '@angular/flex-layout';
 import { ɵMatchMedia, BreakPointRegistry, PrintHook } from '@angular/flex-layout/core';
+import { KierowcyComponent } from './kierowcy/kierowcy.component';
+import { LogistycyComponent } from './logistycy/logistycy.component';
 
 
 @NgModule({
@@ -28,7 +30,9 @@ import { ɵMatchMedia, BreakPointRegistry, PrintHook } from '@angular/flex-layou
     GeneratorComponent,
     HeaderComponent,
     FooterComponent,
-    SidebarComponent
+    SidebarComponent,
+    KierowcyComponent,
+    LogistycyComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -38,6 +42,7 @@ import { ɵMatchMedia, BreakPointRegistry, PrintHook } from '@angular/flex-layou
     RouterModule.forRoot([
       { path: '', component: StronaGlownaComponent },
       { path: 'generator', component: GeneratorComponent },
+      { path: 'kierowcy', component: KierowcyComponent }, { path: 'logistycy', component: LogistycyComponent },
     ]),
     BrowserAnimationsModule,
     MatSidenavModule,
@@ -47,6 +52,7 @@ import { ɵMatchMedia, BreakPointRegistry, PrintHook } from '@angular/flex-layou
     MatMenuModule,
     MatListModule,
     MatButtonModule,
+    MatCardModule,
     FlexLayoutModule
   ],
   providers: [
