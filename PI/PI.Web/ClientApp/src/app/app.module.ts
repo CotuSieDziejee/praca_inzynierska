@@ -20,6 +20,7 @@ import { FlexLayoutModule, StyleUtils, StylesheetMap, LayoutStyleBuilder, MediaM
 import { ɵMatchMedia, BreakPointRegistry, PrintHook } from '@angular/flex-layout/core';
 import { KierowcyComponent } from './kierowcy/kierowcy.component';
 import { LogistycyComponent } from './logistycy/logistycy.component';
+import { ProfilComponent } from './profil/profil.component';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { LogistycyComponent } from './logistycy/logistycy.component';
     FooterComponent,
     SidebarComponent,
     KierowcyComponent,
-    LogistycyComponent
+    LogistycyComponent,
+    ProfilComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -43,6 +45,7 @@ import { LogistycyComponent } from './logistycy/logistycy.component';
       { path: '', component: StronaGlownaComponent },
       { path: 'generator', component: GeneratorComponent },
       { path: 'kierowcy', component: KierowcyComponent }, { path: 'logistycy', component: LogistycyComponent },
+      { path: 'profil', component: ProfilComponent },
     ]),
     BrowserAnimationsModule,
     MatSidenavModule,
