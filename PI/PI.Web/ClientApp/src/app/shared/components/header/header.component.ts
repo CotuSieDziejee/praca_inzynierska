@@ -1,17 +1,20 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html'
+  selector: 'app-header',
+  templateUrl: './header.component.html',
+  styleUrls: ['./header.component.css']
 })
-export class AppComponent {
-  title = 'app';
-  sideBarOpen = true;
+export class HeaderComponent implements OnInit {
+
   @Output() toggleSideBarOutput: EventEmitter<any> = new EventEmitter();
+
+  constructor() { }
+
+  ngOnInit() {
+  }
+
   toggleSideBar() {
     this.toggleSideBarOutput.emit();
-  }
-  sideBarToogler() {
-    this.sideBarOpen = !this.sideBarOpen;
   }
 }

@@ -1,6 +1,17 @@
-/* You can add global styles to this file, and also import other style files */
-
-/* Provide sufficient contrast against white background */
+:host{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+mat-drawer{
+  width: 350px;
+}
+mat-drawer-container{
+  height: 79%;
+}
+mat-drawer-content{
+  padding: 20px;
+}
 a {
   color: #0366d6;
 }
