@@ -1,1 +1,23 @@
-<p>profil works!</p>
+<div class="container">
+    <mat-card class="card" id="first-card">
+        <mat-card-title>Zdjęcie profilowe</mat-card-title>
+        <mat-card-content><img src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Zdjęcie profilowe">
+        </mat-card-content>
+        <mat-card-actions><button mat-raised-button color="primary">Zmień zdjęcie</button></mat-card-actions>
+    </mat-card>
+    <mat-card class="card">
+        <mat-card-title>Dane dotyczące konta</mat-card-title>
+        <mat-card-content>Aplikacja pozwala na generowanie tras, bazując na API wspieranym przez Google.<br>
+            Funkcjonalność generatora możliwa jest tylko z poziomu użytkownika z prawami "Logistyk" oraz
+            "Administrator".<br><br>
+            Usuwanie użytkowników z uprawnieniami "Kierowca" oraz "Logistyk" możliwe jest z poziomu użytkownika z
+            prawami
+            "Administrator".<br><br>
+            Użytkownicy z prawami "Logistyk" oraz "Administrator" mają możliwość podglądu wygenerowanych tras
+            "Kierowców".
+        </mat-card-content>
+        <mat-card-actions><button mat-raised-button color="primary">Zapisz zmiany</button><button mat-raised-button
+                color="accent" id="logout">Wyloguj się</button>
+            <button mat-raised-button color="warn">Usuń konto</button></mat-card-actions>
+    </mat-card>
+</div>
