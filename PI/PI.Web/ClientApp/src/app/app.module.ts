@@ -14,13 +14,14 @@ import { GeneratorComponent } from './generator/generator.component';
 import { HeaderComponent } from './shared/components/header/header.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
 import { SidebarComponent } from './shared/components/sidebar/sidebar.component';
-import { MatDividerModule, MatIconModule, MatMenuModule, MatSidenavModule, MatToolbarModule, MatListModule, MatButtonModule, MatCardModule, MatInputModule } from '@angular/material';
+import { MatDividerModule, MatIconModule, MatMenuModule, MatSidenavModule, MatToolbarModule, MatListModule, MatButtonModule, MatCardModule, MatInputModule, MatTableModule, MatCheckboxModule, MatRadioModule } from '@angular/material';
 import { FlexLayoutModule, StyleUtils, StylesheetMap, LayoutStyleBuilder, MediaMarshaller, LayoutAlignStyleBuilder, LayoutGapStyleBuilder, FlexStyleBuilder } from '@angular/flex-layout';
 import { ɵMatchMedia, BreakPointRegistry, PrintHook } from '@angular/flex-layout/core';
 import { KierowcyComponent } from './kierowcy/kierowcy.component';
 import { LogistycyComponent } from './logistycy/logistycy.component';
 import { ProfilComponent } from './profil/profil.component';
-import { AgmCoreModule } from '@agm/core'
+import { AgmCoreModule } from '@agm/core';
+import { AgmDirectionModule } from 'agm-direction';
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,9 +55,13 @@ import { AgmCoreModule } from '@agm/core'
     MatMenuModule,
     MatListModule,//AIzaSyDPbBeyVPKFlbQ5ubei7A6Q1o_Q02KQUYs
     MatButtonModule,
+    MatTableModule,
     MatCardModule,
     MatInputModule,
+    MatCheckboxModule,
+    MatRadioModule,
     FlexLayoutModule,
+    AgmDirectionModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAPGqbW8VP99sTovydmWmMNtpRjb6a977g'
     }),

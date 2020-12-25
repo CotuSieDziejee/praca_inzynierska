@@ -4,17 +4,24 @@ import { MapsAPILoader, MouseEvent } from '@agm/core';
 
 /// <reference types="@types/google-maps" />
 
+
+
 @Component({
   selector: 'app-generator',
   templateUrl: './generator.component.html',
   styleUrls: ['./generator.component.css']
 })
 
+
 export class GeneratorComponent implements OnInit {
 
 
   @ViewChild('search', { static: true }) searchElementRef: ElementRef;
 
+  public avoidFerries: boolean = false;
+  public avoidHighways: boolean = false;
+  public avoidTolls: boolean = false;
+  public provideRouteAlternatives: boolean = true;
   public latitude: number;
   public longitude: number;
   public address: string;
@@ -22,9 +29,62 @@ export class GeneratorComponent implements OnInit {
   public latlongs: any = [];
   public latlong: any = {};
   public searchControl: FormControl;
+
   constructor(private mapsAPILoader: MapsAPILoader, private ngZone: NgZone) { }
+  public origin;
+  public destination;
+  public waypoints = [];
+
   reset() {
+    console.log(this.latlongs)
     this.latlongs = [];
+    this.waypoints = [];
+    this.origin = null;
+    this.destination = null;
+  }
+
+  HighwaysTrue(event: any) {
+    this.avoidHighways = true;
+  }
+  HighwaysFalse(event: any) {
+    this.avoidHighways = false;
+  }
+  FerriesTrue(event: any) {
+    this.avoidFerries = true;
+  }
+  FerriesFalse(event: any) {
+    this.avoidFerries = false;
+  }
+  TollsTrue(event: any) {
+    this.avoidTolls = true;
+  }
+  TollsFalse(event: any) {
+    this.avoidTolls = false;
+  }
+
+
+  radioInfo() {
+
+  }
+  generuj() {
+
+    for (var _i = 0; _i < this.latlongs.length; _i++) {
+      var num = this.latlongs[_i];
+      if (_i === 0) {
+        this.origin = { lat: parseFloat(num.latitude), lng: parseFloat(num.longitude) };
+        console.log(parseFloat(num.latitude))
+      }
+      else if (_i === this.latlongs.length - 1) {
+        this.destination = { lat: parseFloat(num.latitude), lng: parseFloat(num.longitude) };
+        console.log(parseFloat(num.latitude))
+      }
+      else if (_i !== this.latlongs.length && _i !== 0) {
+        const waypoint = { location: { lat: parseFloat(num.latitude), lng: parseFloat(num.longitude) } };
+        this.waypoints.push(waypoint);
+        console.log(parseFloat(num.latitude))
+      }
+    }
+
   }
 
   ngOnInit() {
@@ -46,7 +106,7 @@ export class GeneratorComponent implements OnInit {
           }
 
           const latlong = {
-            name: place.name,
+            name: place.formatted_address,
             latitude: place.geometry.location.lat(),
             longitude: place.geometry.location.lng()
           };
@@ -56,9 +116,5 @@ export class GeneratorComponent implements OnInit {
         });
       });
     });
-
-
-
-
   }
 }
