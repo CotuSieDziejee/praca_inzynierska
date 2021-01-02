@@ -16,7 +16,7 @@ input{
 #container2{
     display: flex;
     flex-direction: column;
-    width: 50%;
+    width: 60%;
 }
 #container3{
     display: flex;
@@ -52,7 +52,7 @@ input{
     width: 100%;
 }
 #card5{
-    width: 50%;
+    width: 40%;
     margin-left: 40px;
 }
 .address{
@@ -68,4 +68,8 @@ button{
 
 mat-radio-button{
     margin-left: 20px;
+}
+
+.date{
+    margin-top: 15px;
 }

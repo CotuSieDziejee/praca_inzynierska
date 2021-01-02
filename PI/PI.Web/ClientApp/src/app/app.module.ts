@@ -14,7 +14,7 @@ import { GeneratorComponent } from './generator/generator.component';
 import { HeaderComponent } from './shared/components/header/header.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
 import { SidebarComponent } from './shared/components/sidebar/sidebar.component';
-import { MatDividerModule, MatIconModule, MatMenuModule, MatSidenavModule, MatToolbarModule, MatListModule, MatButtonModule, MatCardModule, MatInputModule, MatTableModule, MatCheckboxModule, MatRadioModule } from '@angular/material';
+import { MatDividerModule, MatIconModule, MatMenuModule, MatSidenavModule, MatToolbarModule, MatListModule, MatButtonModule, MatCardModule, MatInputModule, MatTableModule, MatCheckboxModule, MatRadioModule, MatDatepickerModule, MatNativeDateModule } from '@angular/material';
 import { FlexLayoutModule, StyleUtils, StylesheetMap, LayoutStyleBuilder, MediaMarshaller, LayoutAlignStyleBuilder, LayoutGapStyleBuilder, FlexStyleBuilder } from '@angular/flex-layout';
 import { ɵMatchMedia, BreakPointRegistry, PrintHook } from '@angular/flex-layout/core';
 import { KierowcyComponent } from './kierowcy/kierowcy.component';
@@ -40,6 +40,8 @@ import { AgmDirectionModule } from 'agm-direction';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     ApiAuthorizationModule,
     RouterModule.forRoot([
       { path: '', component: StronaGlownaComponent },

@@ -22,6 +22,7 @@ export class GeneratorComponent implements OnInit {
   public avoidHighways: boolean = false;
   public avoidTolls: boolean = false;
   public provideRouteAlternatives: boolean = true;
+  public optimizeWaypoints: boolean = false;
   public latitude: number;
   public longitude: number;
   public address: string;
@@ -61,11 +62,19 @@ export class GeneratorComponent implements OnInit {
   TollsFalse(event: any) {
     this.avoidTolls = false;
   }
-
-
-  radioInfo() {
-
+  optimizeWaypointsTrue(event: any) {
+    this.optimizeWaypoints = true;
   }
+  optimizeWaypointsFalse(event: any) {
+    this.optimizeWaypoints = false;
+  }
+  provideRouteAlternativesTrue(event: any) {
+    this.provideRouteAlternatives = true;
+  }
+  provideRouteAlternativesFalse(event: any) {
+    this.provideRouteAlternatives = false;
+  }
+
   generuj() {
 
     for (var _i = 0; _i < this.latlongs.length; _i++) {
