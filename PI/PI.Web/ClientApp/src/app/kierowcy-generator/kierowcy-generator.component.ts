@@ -3,22 +3,26 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { SelectionModel } from '@angular/cdk/collections';
-export interface UserData {
-  id: string;
-  name: string;
-  progress: string;
 
+export interface Pracownicy {
+  id: number;
+  imie: string;
+  nazwisko: string;
 }
 
 
-const NAMES: string[] = [
-  'Maia', 'Asher', 'Olivia', 'Atticus', 'Amelia', 'Jack', 'Charlotte', 'Theodore', 'Isla', 'Oliver',
-  'Isabella', 'Jasper', 'Cora', 'Levi', 'Violet', 'Arthur', 'Mia', 'Thomas', 'Elizabeth'
+const WORKERS_DATA: Pracownicy[] = [
+  { id: 1, imie: 'Hydrogen', nazwisko: 'H' },
+  { id: 2, imie: 'Helium', nazwisko: 'He' },
+  { id: 3, imie: 'Lithium', nazwisko: 'Li' },
+  { id: 4, imie: 'Beryllium', nazwisko: 'Be' },
+  { id: 5, imie: 'Boron', nazwisko: 'B' },
+  { id: 6, imie: 'Carbon', nazwisko: 'C' },
+  { id: 7, imie: 'Nitrogen', nazwisko: 'N' },
+  { id: 8, imie: 'Oxygen', nazwisko: 'O' },
+  { id: 9, imie: 'Fluorine', nazwisko: 'F' },
+  { id: 10, imie: 'Neon', nazwisko: 'Ne' },
 ];
-
-/**
- * @title Data table with sorting, pagination, and filtering.
- */
 
 @Component({
   selector: 'app-kierowcy-generator',
@@ -26,19 +30,16 @@ const NAMES: string[] = [
   styleUrls: ['./kierowcy-generator.component.css']
 })
 export class KierowcyGeneratorComponent implements AfterViewInit {
-  displayedColumns: string[] = ['select', 'id', 'name', 'progress'];
-  dataSource: MatTableDataSource<UserData>;
-  selection = new SelectionModel<UserData>(true, []);
+  displayedColumns: string[] = ['select', 'id', 'imie', 'nazwisko'];
+  dataSource: MatTableDataSource<Pracownicy>;
+  selection = new SelectionModel<Pracownicy>(true, []);
 
   @ViewChild(MatPaginator, { static: false }) paginator
   @ViewChild(MatSort, { static: false }) sort
 
   constructor() {
-    // Create 100 users
-    const users = Array.from({ length: 100 }, (_, k) => createNewUser(k + 1));
 
-    // Assign the data to the data source for the table to render
-    this.dataSource = new MatTableDataSource(users);
+    this.dataSource = new MatTableDataSource<Pracownicy>(WORKERS_DATA);
   }
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
@@ -63,21 +64,10 @@ export class KierowcyGeneratorComponent implements AfterViewInit {
       this.selection.clear() :
       this.dataSource.data.forEach(row => this.selection.select(row));
   }
-  checkboxLabel(row?: UserData): string {
+  checkboxLabel(row?: Pracownicy): string {
     if (!row) {
       return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
     }
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.id + 1}`;
   }
-}
-/** Builds and returns a new User. */
-function createNewUser(id: number): UserData {
-  const name = NAMES[Math.round(Math.random() * (NAMES.length - 1))] + ' ' +
-    NAMES[Math.round(Math.random() * (NAMES.length - 1))].charAt(0) + '.';
-
-  return {
-    id: id.toString(),
-    name: name,
-    progress: Math.round(Math.random() * 100).toString(),
-  };
 }
