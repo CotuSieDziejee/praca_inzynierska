@@ -73,3 +73,7 @@ mat-radio-button{
 .date{
     margin-top: 15px;
 }
+
+.input{
+    width: 100%;
+}

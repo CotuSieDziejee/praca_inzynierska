@@ -15,7 +15,6 @@ import { MapsAPILoader, MouseEvent } from '@agm/core';
 
 export class GeneratorComponent implements OnInit {
 
-
   @ViewChild('search', { static: true }) searchElementRef: ElementRef;
 
   public avoidFerries: boolean = false;
@@ -23,6 +22,7 @@ export class GeneratorComponent implements OnInit {
   public avoidTolls: boolean = false;
   public provideRouteAlternatives: boolean = true;
   public optimizeWaypoints: boolean = false;
+  public disabled: boolean = true;
   public latitude: number;
   public longitude: number;
   public address: string;
@@ -37,11 +37,11 @@ export class GeneratorComponent implements OnInit {
   public waypoints = [];
 
   reset() {
-    console.log(this.latlongs)
     this.latlongs = [];
     this.waypoints = [];
     this.origin = null;
     this.destination = null;
+    this.disabled = !this.disabled;
   }
 
   HighwaysTrue(event: any) {
@@ -81,28 +81,25 @@ export class GeneratorComponent implements OnInit {
       var num = this.latlongs[_i];
       if (_i === 0) {
         this.origin = { lat: parseFloat(num.latitude), lng: parseFloat(num.longitude) };
-        console.log(parseFloat(num.latitude))
       }
       else if (_i === this.latlongs.length - 1) {
         this.destination = { lat: parseFloat(num.latitude), lng: parseFloat(num.longitude) };
-        console.log(parseFloat(num.latitude))
       }
       else if (_i !== this.latlongs.length && _i !== 0) {
-        const waypoint = { location: { lat: parseFloat(num.latitude), lng: parseFloat(num.longitude) } };
+        const waypoint = { location: { lat: parseFloat(num.latitude), lng: parseFloat(num.longitude), stopover: true } };
         this.waypoints.push(waypoint);
-        console.log(parseFloat(num.latitude))
       }
     }
-
+    this.disabled = !this.disabled;
   }
 
   ngOnInit() {
     this.zoom = 5;
     this.latitude = 50.821400;
     this.longitude = 19.117444;
-
     this.searchControl = new FormControl();
-
+    //let date: Date = new Date();
+    //console.log("Date = " + date); //Date = Tue Feb 05 2019 12:05:22 GMT+0530 (IST)  
     this.mapsAPILoader.load().then(() => {
       const autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
 

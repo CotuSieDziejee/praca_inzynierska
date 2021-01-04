@@ -14,7 +14,7 @@ import { GeneratorComponent } from './generator/generator.component';
 import { HeaderComponent } from './shared/components/header/header.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
 import { SidebarComponent } from './shared/components/sidebar/sidebar.component';
-import { MatDividerModule, MatIconModule, MatMenuModule, MatSidenavModule, MatToolbarModule, MatListModule, MatButtonModule, MatCardModule, MatInputModule, MatTableModule, MatCheckboxModule, MatRadioModule, MatDatepickerModule, MatNativeDateModule } from '@angular/material';
+import { MatDividerModule, MatIconModule, MatMenuModule, MatSidenavModule, MatToolbarModule, MatListModule, MatButtonModule, MatCardModule, MatInputModule, MatTableModule, MatCheckboxModule, MatRadioModule, MatDatepickerModule, MatNativeDateModule, MatSelectModule, MatStepperModule, MatPaginatorModule, MatSortModule } from '@angular/material';
 import { FlexLayoutModule, StyleUtils, StylesheetMap, LayoutStyleBuilder, MediaMarshaller, LayoutAlignStyleBuilder, LayoutGapStyleBuilder, FlexStyleBuilder } from '@angular/flex-layout';
 import { ɵMatchMedia, BreakPointRegistry, PrintHook } from '@angular/flex-layout/core';
 import { KierowcyComponent } from './kierowcy/kierowcy.component';
@@ -22,6 +22,13 @@ import { LogistycyComponent } from './logistycy/logistycy.component';
 import { ProfilComponent } from './profil/profil.component';
 import { AgmCoreModule } from '@agm/core';
 import { AgmDirectionModule } from 'agm-direction';
+import { NgxMatDatetimePickerModule, NgxMatTimepickerModule, NgxMatNativeDateModule } from '@angular-material-components/datetime-picker';
+import { GeneratorContainerComponent } from './generator-container/generator-container.component';
+import { KierowcyGeneratorComponent } from './kierowcy-generator/kierowcy-generator.component';
+import { MojeTrasyComponent } from './moje-trasy/moje-trasy.component';
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,21 +40,32 @@ import { AgmDirectionModule } from 'agm-direction';
     SidebarComponent,
     KierowcyComponent,
     LogistycyComponent,
-    ProfilComponent
+    ProfilComponent,
+    GeneratorContainerComponent,
+    KierowcyGeneratorComponent,
+    MojeTrasyComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
+    NgxMatDatetimePickerModule,
+    NgxMatTimepickerModule,
+    MatStepperModule,
     HttpClientModule,
+    MatSelectModule,
+    MatSortModule,
+    MatPaginatorModule,
     FormsModule,
+    NgxMatNativeDateModule,
     ReactiveFormsModule,
     MatDatepickerModule,
     MatNativeDateModule,
     ApiAuthorizationModule,
     RouterModule.forRoot([
       { path: '', component: StronaGlownaComponent },
-      { path: 'generator', component: GeneratorComponent },
+      { path: 'generator', component: GeneratorContainerComponent },
       { path: 'kierowcy', component: KierowcyComponent }, { path: 'logistycy', component: LogistycyComponent },
       { path: 'profil', component: ProfilComponent },
+      { path: 'mojeTrasy', component: MojeTrasyComponent },
     ]),
     BrowserAnimationsModule,
     MatSidenavModule,

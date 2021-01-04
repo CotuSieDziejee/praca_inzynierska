@@ -5,7 +5,8 @@
             <agm-map [latitude]="latitude" [longitude]="longitude">
                 <agm-direction [origin]="origin" [destination]="destination" [waypoints]="waypoints" [panel]="myPanel"
                     [avoidFerries]="avoidFerries" [avoidHighways]="avoidHighways" [avoidTolls]="avoidTolls"
-                    [provideRouteAlternatives]="provideRouteAlternatives" [optimizeWaypoints]="optimizeWaypoints">
+                    [provideRouteAlternatives]="provideRouteAlternatives" [optimizeWaypoints]="optimizeWaypoints"
+                    [drivingOptions]="drivingOptions">
                 </agm-direction>
             </agm-map>
 
@@ -23,26 +24,34 @@
         <mat-card class="card" id="card1">
             <mat-card-subtitle>Podaj adres</mat-card-subtitle>
             <mat-card-content>
-                <div class="form-group">
-                    <input type="text" class="form-control" id="place" [formControl]='searchControl'
-                        placeholder="Podaj lokalizację" autocorrect="off" autocapitalize="off" spellcheck="off"
-                        type="text" #search>
-                </div>
+                <form class="example-form">
+                    <mat-form-field class="input">
+                        <mat-label>Adres</mat-label>
+                        <input type="email" matInput id="place" [formControl]='searchControl'
+                            placeholder="Podaj lokalizację" autocorrect="off" autocapitalize="off" spellcheck="off"
+                            type="text" #search>
+                    </mat-form-field>
+                </form>
+
 
                 <div>
                     <mat-card class="address" *ngFor="let latlong of latlongs">
                         <mat-card-content>
                             <b>{{latlong.name}}</b>
                             <br>
-                            <mat-form-field class="date" appearance="fill">
-                                <mat-label>Data dostawy</mat-label>
-                                <input matInput [matDatepicker]="picker">
+                            <!--
+                            <mat-form-field>
+                                <input matInput [ngxMatDatetimePicker]="picker"
+                                    placeholder="Wybierz date i godzine dostawy">
                                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                                <mat-datepicker touchUi #picker></mat-datepicker>
+                                <ngx-mat-datetime-picker #picker [showSpinners]=true [hideTime]="hideTime">
+                                </ngx-mat-datetime-picker>
                             </mat-form-field>
+                            -->
                         </mat-card-content>
                     </mat-card>
                 </div>
+
 
             </mat-card-content>
 
@@ -50,8 +59,8 @@
         </mat-card>
         <mat-card class="card" id="card4">
             <mat-card-content>
-                <button mat-raised-button color="warn" (click)="reset()">Reset</button>
-                <button mat-raised-button color="primary" (click)="generuj()">Generuj</button>
+                <button mat-raised-button color="warn" (click)="reset()" [disabled]="disabled">Reset</button>
+                <button mat-raised-button color="primary" (click)="generuj()" [disabled]="!disabled">Generuj</button>
             </mat-card-content>
 
         </mat-card>
@@ -82,24 +91,28 @@
                 <mat-radio-button [checked]="!avoidTolls" value="false" (change)="TollsFalse($event)">Nie
                 </mat-radio-button>
             </mat-radio-group>
-
+            <br><br>
+            <mat-divider></mat-divider>
+            <br>
             <p>Zapewnij alternatywne drogi</p>
             <mat-radio-group>
                 <mat-radio-button class="example-margin" [checked]="provideRouteAlternatives"
-                    value="provideRouteAlternatives-true" (change)="provideRouteAlternativesTrue($event)">Tak
+                    value="provideRouteAlternatives-true" (change)="provideRouteAlternativesTrue($event)"
+                    [disabled]="!disabled">Tak
                 </mat-radio-button>
                 <mat-radio-button class=" example-margin" [checked]="!provideRouteAlternatives"
-                    value="provideRouteAlternatives-false" (change)="provideRouteAlternativesFalse($event)">Nie
+                    value="provideRouteAlternatives-false" (change)="provideRouteAlternativesFalse($event)"
+                    [disabled]="!disabled">Nie
                 </mat-radio-button>
             </mat-radio-group>
 
             <p>Ignoruj kolejność punktów</p>
             <mat-radio-group>
                 <mat-radio-button class=" example-margin" [checked]="optimizeWaypoints" value="optimizeWaypoints-true"
-                    (change)="optimizeWaypointsTrue($event)">Tak
+                    (change)="optimizeWaypointsTrue($event)" [disabled]="!disabled">Tak
                 </mat-radio-button>
                 <mat-radio-button class="example-margin" [checked]="!optimizeWaypoints" value="optimizeWaypoints-false"
-                    (change)="optimizeWaypointsFalse($event)">Nie
+                    (change)="optimizeWaypointsFalse($event)" [disabled]="!disabled">Nie
                 </mat-radio-button>
             </mat-radio-group>
 
