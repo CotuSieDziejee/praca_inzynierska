@@ -22,7 +22,6 @@ export class GeneratorComponent implements OnInit {
   public avoidTolls: boolean = false;
   public provideRouteAlternatives: boolean = true;
   public optimizeWaypoints: boolean = false;
-  public disabled: boolean = true;
   public latitude: number;
   public longitude: number;
   public address: string;
@@ -30,6 +29,8 @@ export class GeneratorComponent implements OnInit {
   public latlongs: any = [];
   public latlong: any = {};
   public searchControl: FormControl;
+  public disabled: boolean = true;
+
 
   constructor(private mapsAPILoader: MapsAPILoader, private ngZone: NgZone) { }
   public origin;

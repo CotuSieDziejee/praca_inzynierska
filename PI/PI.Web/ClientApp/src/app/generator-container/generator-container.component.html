@@ -5,8 +5,8 @@
             <app-generator></app-generator>
             <mat-divider></mat-divider>
             <br>
-            <div>
-                <button mat-button matStepperNext>Dalej</button>
+            <div class="stepper-buttons">
+                <button mat-button matStepperNext class="border">Dalej</button>
             </div>
         </form>
     </mat-step>
@@ -17,9 +17,9 @@
             <br>
             <mat-divider></mat-divider>
             <br>
-            <div>
-                <button mat-button matStepperPrevious>Wstecz</button>
-                <button mat-button matStepperNext>Dalej</button>
+            <div class="stepper-buttons">
+                <button mat-button matStepperNext class="border">Dalej</button>
+                <button mat-button matStepperPrevious class="border">Wstecz</button>
             </div>
         </form>
     </mat-step>
@@ -42,9 +42,9 @@
         <br>
         <mat-divider></mat-divider>
         <br>
-        <div>
-            <button mat-button matStepperPrevious>Wstecz</button>
-            <button mat-button (click)="stepper.reset()">Reset</button>
+        <div class="stepper-buttons">
+            <button mat-button matStepperPrevious class="border">Wstecz</button>
+            <!--<button mat-button (click)="stepper.reset()">Reset</button>-->
         </div>
     </mat-step>
 </mat-horizontal-stepper>

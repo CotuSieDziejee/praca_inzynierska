@@ -12,7 +12,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StronaGlownaComponent } from './strona-glowna/strona-glowna.component';
 import { GeneratorComponent } from './generator/generator.component';
 import { HeaderComponent } from './shared/components/header/header.component';
-import { FooterComponent } from './shared/components/footer/footer.component';
 import { SidebarComponent } from './shared/components/sidebar/sidebar.component';
 import { MatDividerModule, MatIconModule, MatMenuModule, MatSidenavModule, MatToolbarModule, MatListModule, MatButtonModule, MatCardModule, MatInputModule, MatTableModule, MatCheckboxModule, MatRadioModule, MatDatepickerModule, MatNativeDateModule, MatSelectModule, MatStepperModule, MatPaginatorModule, MatSortModule } from '@angular/material';
 import { FlexLayoutModule, StyleUtils, StylesheetMap, LayoutStyleBuilder, MediaMarshaller, LayoutAlignStyleBuilder, LayoutGapStyleBuilder, FlexStyleBuilder } from '@angular/flex-layout';
@@ -36,7 +35,6 @@ import { MojeTrasyComponent } from './moje-trasy/moje-trasy.component';
     StronaGlownaComponent,
     GeneratorComponent,
     HeaderComponent,
-    FooterComponent,
     SidebarComponent,
     KierowcyComponent,
     LogistycyComponent,

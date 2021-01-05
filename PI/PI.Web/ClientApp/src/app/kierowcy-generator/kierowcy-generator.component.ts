@@ -30,6 +30,11 @@ const WORKERS_DATA: Pracownicy[] = [
   styleUrls: ['./kierowcy-generator.component.css']
 })
 export class KierowcyGeneratorComponent implements AfterViewInit {
+
+  public kierowcy: any = [];
+  public disabled: boolean = false;
+
+
   displayedColumns: string[] = ['select', 'id', 'imie', 'nazwisko'];
   dataSource: MatTableDataSource<Pracownicy>;
   selection = new SelectionModel<Pracownicy>(true, []);
@@ -66,8 +71,31 @@ export class KierowcyGeneratorComponent implements AfterViewInit {
   }
   checkboxLabel(row?: Pracownicy): string {
     if (!row) {
+      console.log(!row);
       return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
     }
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.id + 1}`;
   }
+  getRecord(row) {
+
+  }
+  updateCheckedList() {
+    this.kierowcy = this.selection.selected;
+
+    console.log(this.kierowcy);
+    this.disabled = !this.disabled;
+  }
+
+  selectAll() {
+    this.isAllSelected() ?
+      this.selection.clear() :
+      this.dataSource.data.forEach(row => this.selection.isSelected(row));
+  }
+
+  edit() {
+    this.kierowcy = [];
+    this.disabled = !this.disabled;
+  }
 }
+
+

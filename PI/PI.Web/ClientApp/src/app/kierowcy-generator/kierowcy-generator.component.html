@@ -8,13 +8,12 @@
     <!-- Checkbox Column -->
     <ng-container matColumnDef="select">
         <th mat-header-cell *matHeaderCellDef>
-            <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()"
-                [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
-            </mat-checkbox>
+
         </th>
-        <td mat-cell *matCellDef="let row">
-            <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null"
-                [checked]="selection.isSelected(row)" [aria-label]="checkboxLabel(row)">
+        <td mat-cell *matCellDef="let row;let i=index">
+            <mat-checkbox [disabled]='disabled' (click)="getRecord(row)"
+                (change)="$event ? selection.toggle(row) : null" [checked]="selection.isSelected(row)"
+                [aria-label]="checkboxLabel(row)">
             </mat-checkbox>
         </td>
     </ng-container>
@@ -48,5 +47,9 @@
 <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
 
 <br><br>
-<button mat-raised-button color="warn">Resetuj tabelę</button>
-<button mat-raised-button color="primary" id="dodaj">Dodaj</button>
+<button mat-raised-button color="accent" [disabled]='disabled' (click)="masterToggle()">Zaznacz/odznacz
+    wszystkie</button>
+<button mat-raised-button color="primary" class="button" [disabled]='disabled'
+    (click)="updateCheckedList()">Dodaj</button>
+<button mat-raised-button *ngIf="disabled" color="primary" class="button" [disabled]='!disabled'
+    (click)="edit()">Edytuj</button>
