@@ -1,0 +1,28 @@
+.example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+  }
+  
+  .example-full-width {
+    width: 100%;
+  }
+
+  .card-login{
+      width: 30vw;
+      margin: auto;
+  }
+  mat-card-title{
+    justify-content: center;
+    text-align: center;
+  }
+
+  .button{
+    display: flex;
+  justify-content: center;
+  }
+
+  .password{
+    margin-left: 8px;
+  }
+  

@@ -1,0 +1,59 @@
+<mat-card class="card-login">
+    <mat-card-content>
+        <mat-card-title>
+            Zaloguj się
+        </mat-card-title>
+
+        <table class="example-full-width" cellspacing="0">
+            <tr>
+                <td>
+                    <mat-icon>mail</mat-icon>
+                </td>
+                <td>
+                    <form class="example-form">
+                        <mat-form-field class="example-full-width">
+
+                            <mat-label>Podaj email</mat-label>
+                            <input matInput placeholder="pat@example.com" [formControl]="email" required>
+                            <mat-error *ngIf="email.invalid">{{getErrorMessageEmail()}}</mat-error>
+                        </mat-form-field>
+                    </form>
+                </td>
+
+            </tr>
+        </table>
+        <table class="example-full-width" cellspacing="0">
+            <tr>
+                <td>
+                    <mat-icon>lock</mat-icon>
+                </td>
+                <td>
+                    <form class="example-form password">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Wpisz hasło (min.3 znaki)</mat-label>
+                            <input matInput [type]="hide ? 'password' : 'text'" [minLength]=3 [formControl]="password"
+                                required>
+                            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                                [attr.aria-pressed]="hide">
+                                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                            </button>
+                            <mat-error *ngIf="password.invalid">{{getErrorMessagePassword()}}</mat-error>
+                        </mat-form-field>
+                    </form>
+                </td>
+
+            </tr>
+        </table>
+        <br>
+        <div class="button">
+            <button mat-raised-button color="primary" [disabled]="buttonstatus">Zaloguj</button>
+        </div>
+
+        <br>
+        <br>
+
+        <mat-divider></mat-divider>
+        <br>
+        <p>Nie masz konta? <a [routerLink]="['/register']">Zarejestruj się</a></p>
+    </mat-card-content>
+</mat-card>

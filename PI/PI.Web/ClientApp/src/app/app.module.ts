@@ -25,6 +25,8 @@ import { NgxMatDatetimePickerModule, NgxMatTimepickerModule, NgxMatNativeDateMod
 import { GeneratorContainerComponent } from './generator-container/generator-container.component';
 import { KierowcyGeneratorComponent } from './kierowcy-generator/kierowcy-generator.component';
 import { MojeTrasyComponent } from './moje-trasy/moje-trasy.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 
 
 
@@ -41,7 +43,9 @@ import { MojeTrasyComponent } from './moje-trasy/moje-trasy.component';
     ProfilComponent,
     GeneratorContainerComponent,
     KierowcyGeneratorComponent,
-    MojeTrasyComponent
+    MojeTrasyComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -61,9 +65,12 @@ import { MojeTrasyComponent } from './moje-trasy/moje-trasy.component';
     RouterModule.forRoot([
       { path: '', component: StronaGlownaComponent },
       { path: 'generator', component: GeneratorContainerComponent },
-      { path: 'kierowcy', component: KierowcyComponent }, { path: 'logistycy', component: LogistycyComponent },
+      { path: 'kierowcy', component: KierowcyComponent },
+      { path: 'logistycy', component: LogistycyComponent },
       { path: 'profil', component: ProfilComponent },
       { path: 'mojeTrasy', component: MojeTrasyComponent },
+      { path: 'login', component: LoginComponent },
+      { path: 'register', component: RegisterComponent },
     ]),
     BrowserAnimationsModule,
     MatSidenavModule,

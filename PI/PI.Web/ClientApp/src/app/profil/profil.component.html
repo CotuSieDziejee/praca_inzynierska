@@ -16,8 +16,10 @@
             Użytkownicy z prawami "Logistyk" oraz "Administrator" mają możliwość podglądu wygenerowanych tras
             "Kierowców".
         </mat-card-content>
-        <mat-card-actions><button mat-raised-button color="primary">Zapisz zmiany</button><button mat-raised-button
-                color="accent" id="logout">Wyloguj się</button>
-            <button mat-raised-button color="warn">Usuń konto</button></mat-card-actions>
+        <mat-card-actions>
+            <button mat-raised-button color="primary">Zapisz zmiany</button>
+            <button [routerLink]="['/login']" mat-raised-button color="accent" id="logout">Wyloguj się</button>
+            <button mat-raised-button color="warn">Usuń konto</button>
+        </mat-card-actions>
     </mat-card>
 </div>
