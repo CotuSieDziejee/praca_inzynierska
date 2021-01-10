@@ -1,85 +1,90 @@
 <mat-card class="card-login">
     <mat-card-content>
         <mat-card-title>
-            Zarejestruj się
+            ZAREJESTRUJ SIĘ
         </mat-card-title>
         <br>
-        <table class="example-full-width" cellspacing="0">
-            <tr>
-                <td>
-                    <mat-form-field class="example-full-width">
-                        <mat-label>Imię</mat-label>
-                        <input matInput [type]="text" [minLength]=1 [formControl]="name" required>
+        <form #userRegistrationForm="ngForm">
+            <table class="example-full-width" cellspacing="0">
+                <tr>
+                    <td>
 
-                        <mat-error *ngIf="name.invalid">{{getErrorMessageName()}}</mat-error>
-                    </mat-form-field>
-                </td>
-                <td>
-
-                </td>
-            </tr>
-        </table>
-        <table class="example-full-width" cellspacing="0">
-            <tr>
-                <td>
-
-                </td>
-                <td>
-                    <mat-form-field class="example-full-width">
-                        <mat-label>Nazwisko</mat-label>
-                        <input matInput [type]="text" [minLength]=1 [formControl]="surname" required>
-
-                        <mat-error *ngIf="surname.invalid">{{getErrorMessageSurname()}}</mat-error>
-                    </mat-form-field>
-                </td>
-            </tr>
-        </table>
-        <br>
-        <table class="example-full-width" cellspacing="0">
-            <tr>
-                <td>
-                    <mat-icon>mail</mat-icon>
-                </td>
-                <td>
-                    <form class="example-form">
+                    </td>
+                    <td>
                         <mat-form-field class="example-full-width">
+                            <mat-label>Imię</mat-label>
+                            <input matInput [name]="FirstName" #FirstName="ngModel" [(ngModel)]="user.FirstName"
+                                [type]="text" [minLength]=1 required>
 
-                            <mat-label>Podaj email</mat-label>
-                            <input matInput placeholder="pat@example.com" [formControl]="email" required>
-                            <mat-error *ngIf="email.invalid">{{getErrorMessageEmail()}}</mat-error>
+                            <mat-error data-error='Podaj wartość'>Pole wymagane</mat-error>
                         </mat-form-field>
-                    </form>
-                </td>
+                    </td>
+                </tr>
+            </table>
+            <table class="example-full-width" cellspacing="0">
+                <tr>
+                    <td>
 
-            </tr>
-        </table>
-        <br>
-
-        <table class="example-full-width" cellspacing="0">
-            <tr>
-                <td>
-                    <mat-icon>lock</mat-icon>
-                </td>
-                <td>
-                    <form class="example-form password">
+                    </td>
+                    <td>
                         <mat-form-field class="example-full-width">
-                            <mat-label>Wpisz hasło (min.3 znaki)</mat-label>
-                            <input matInput [type]="hide ? 'password' : 'text'" [minLength]=3 [formControl]="password"
-                                required>
-                            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
-                                [attr.aria-pressed]="hide">
-                                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-                            </button>
-                            <mat-error *ngIf="password.invalid">{{getErrorMessagePassword()}}</mat-error>
-                        </mat-form-field>
-                    </form>
-                </td>
+                            <mat-label>Nazwisko</mat-label>
+                            <input matInput name="LastName" #LastName="ngModel" [(ngModel)]="user.LastName"
+                                [type]="text" [minLength]=1 required>
 
-            </tr>
-        </table>
+                            <mat-error data-error='Podaj wartość'>Pole wymagane</mat-error>
+                        </mat-form-field>
+                    </td>
+                </tr>
+            </table>
+            <br>
+            <table class="example-full-width" cellspacing="0">
+                <tr>
+                    <td>
+                        <mat-icon>mail</mat-icon>
+                    </td>
+                    <td>
+                        <form class="example-form">
+                            <mat-form-field class="example-full-width">
+
+                                <mat-label>Podaj email</mat-label>
+                                <input matInput name="Email" #Email="ngModel" [(ngModel)]="user.Email"
+                                    placeholder="pat@example.com" required>
+                                <mat-error data-error='Podaj wartość'>Pole wymagane</mat-error>
+                            </mat-form-field>
+                        </form>
+                    </td>
+
+                </tr>
+            </table>
+            <br>
+
+            <table class="example-full-width" cellspacing="0">
+                <tr>
+                    <td>
+                        <mat-icon>lock</mat-icon>
+                    </td>
+                    <td>
+                        <form class="example-form password">
+                            <mat-form-field class="example-full-width">
+                                <mat-label>Wpisz hasło (min.3 znaki)</mat-label>
+                                <input matInput name="Password" #Password="ngModel" [(ngModel)]="user.Password"
+                                    [type]="hide ? 'password' : 'text'" [minLength]=6 required>
+                                <button mat-icon-button matSuffix (click)="hide = !hide"
+                                    [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                                </button>
+                                <mat-error>Pole wymagane</mat-error>
+                            </mat-form-field>
+                        </form>
+                    </td>
+
+                </tr>
+            </table>
+        </form>
         <br>
         <div class="button">
-            <button mat-raised-button color="accent" [disabled]="buttonstatus">Zarejestruj</button>
+            <button mat-raised-button color="accent" [disabled]=false>Zarejestruj</button>
         </div>
         <br>
         <br>

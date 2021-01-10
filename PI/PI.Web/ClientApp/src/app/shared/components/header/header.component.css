@@ -5,3 +5,8 @@ ul li {
 #title{
   margin-left: 20px;
 }
+
+#login{
+  margin: 15px 50px 0px 0px;
+  font-size: 16px;
+}
