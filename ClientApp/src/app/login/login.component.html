@@ -6,8 +6,9 @@
         <br>
         <form #form='ngForm' class="mb-4" autocomplete="off" (submit)="onSubmit(form)">
             <div class="form-group">
-                <label>Email</label>
-                <input class="form-control" #Email="ngModel" name="Email" [(ngModel)]="formModel.Email" required>
+                <label>Nazwa użytkownika</label>
+                <input class="form-control" #Username="ngModel" name="Username" [(ngModel)]="formModel.Username"
+                    required>
 
             </div>
 
