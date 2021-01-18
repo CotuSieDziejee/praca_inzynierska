@@ -58,6 +58,12 @@ namespace PracaInzynierskaAPI
 
             app.UseRouting();
 
+            app.UseCors(builder =>
+           builder.WithOrigins("http://localhost:4200")
+           .AllowAnyHeader()
+           .AllowAnyMethod()
+           );
+
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
