@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, NgForm, Validators } from '@angular/forms';
 import { User } from '../shared/user.model';
 import { UserService } from '../shared/user.service';
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -27,9 +27,12 @@ export class RegisterComponent implements OnInit {
   }
 
 
-  constructor(public service: UserService) { }
+  constructor(public service: UserService, private router: Router) { }
 
   ngOnInit() {
+    if (localStorage.getItem('token') != null)
+      this.router.navigateByUrl('');
+
     this.resetForm();
   }
 

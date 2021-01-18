@@ -26,6 +26,8 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { UserService } from './shared/user.service';
 import { ToastrModule } from 'ngx-toastr';
+import { AuthGuard } from './auth/auth.guard';
+import { AuthInterceptor } from './auth/auth.interceptor';
 
 
 
@@ -61,12 +63,12 @@ import { ToastrModule } from 'ngx-toastr';
     MatDatepickerModule,
     MatNativeDateModule,
     RouterModule.forRoot([
-      { path: '', component: StronaGlownaComponent },
-      { path: 'generator', component: GeneratorContainerComponent },
-      { path: 'kierowcy', component: KierowcyComponent },
-      { path: 'logistycy', component: LogistycyComponent },
-      { path: 'profil', component: ProfilComponent },
-      { path: 'mojeTrasy', component: MojeTrasyComponent },
+      { path: '', component: StronaGlownaComponent, canActivate: [AuthGuard] },
+      { path: 'generator', component: GeneratorContainerComponent, canActivate: [AuthGuard] },
+      { path: 'kierowcy', component: KierowcyComponent, canActivate: [AuthGuard] },
+      { path: 'logistycy', component: LogistycyComponent, canActivate: [AuthGuard] },
+      { path: 'profil', component: ProfilComponent, canActivate: [AuthGuard] },
+      { path: 'mojeTrasy', component: MojeTrasyComponent, canActivate: [AuthGuard] },
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
     ]),
@@ -108,7 +110,12 @@ import { ToastrModule } from 'ngx-toastr';
     MediaMarshaller,
     ɵMatchMedia,
     BreakPointRegistry,
-    UserService
+    UserService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })
