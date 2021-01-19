@@ -1,5 +1,5 @@
 <mat-nav-list>
-    <div class="profile-card">
+    <div class="profile-card" *ngIf="userDetails">
         <div class="header">
             <h4>{{userDetails.fullName}}</h4>
         </div>

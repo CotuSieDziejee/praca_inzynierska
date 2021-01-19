@@ -35,5 +35,37 @@ namespace PracaInzynierskaAPI.Controllers
                 user.UserName
             };
         }
+
+        [HttpGet]
+        [Authorize(Roles = "Admin", AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [Route("ForAdmin")]
+        public string GetForAdmin()
+        {
+            return "Web method for Admin";
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "Logistician", AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [Route("ForLogistician")]
+        public string GetLogistician()
+        {
+            return "Web method for Logistician";
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "Driver", AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [Route("ForDriver")]
+        public string GetDriver()
+        {
+            return "Web method for Driver";
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "Admin,Logistician", AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [Route("ForAdminOrLogistician")]
+        public string GetForAdminOrLogistician()
+        {
+            return "Web method for Admin or Logistician";
+        }
     }
 }

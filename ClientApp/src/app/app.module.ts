@@ -28,6 +28,7 @@ import { UserService } from './shared/user.service';
 import { ToastrModule } from 'ngx-toastr';
 import { AuthGuard } from './auth/auth.guard';
 import { AuthInterceptor } from './auth/auth.interceptor';
+import { ForbiddenComponent } from './forbidden/forbidden.component';
 
 
 
@@ -46,7 +47,8 @@ import { AuthInterceptor } from './auth/auth.interceptor';
     KierowcyGeneratorComponent,
     MojeTrasyComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    ForbiddenComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -64,13 +66,14 @@ import { AuthInterceptor } from './auth/auth.interceptor';
     MatNativeDateModule,
     RouterModule.forRoot([
       { path: '', component: StronaGlownaComponent, canActivate: [AuthGuard] },
-      { path: 'generator', component: GeneratorContainerComponent, canActivate: [AuthGuard] },
-      { path: 'kierowcy', component: KierowcyComponent, canActivate: [AuthGuard] },
-      { path: 'logistycy', component: LogistycyComponent, canActivate: [AuthGuard] },
-      { path: 'profil', component: ProfilComponent, canActivate: [AuthGuard] },
-      { path: 'mojeTrasy', component: MojeTrasyComponent, canActivate: [AuthGuard] },
+      { path: 'generator', component: GeneratorContainerComponent, canActivate: [AuthGuard], data: { permittedRoles: ['Admin', 'Logistician'] } },
+      { path: 'kierowcy', component: KierowcyComponent, canActivate: [AuthGuard], data: { permittedRoles: ['Admin'] } },
+      { path: 'logistycy', component: LogistycyComponent, canActivate: [AuthGuard], data: { permittedRoles: ['Admin'] } },
+      { path: 'profil', component: ProfilComponent, canActivate: [AuthGuard], data: { permittedRoles: ['Admin', 'Driver', 'Logistician'] } },
+      { path: 'mojeTrasy', component: MojeTrasyComponent, canActivate: [AuthGuard], data: { permittedRoles: ['Admin', 'Driver', 'Logistician'] } },
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
+      { path: 'forbidden', component: ForbiddenComponent },
     ]),
     BrowserAnimationsModule,
     MatSidenavModule,
