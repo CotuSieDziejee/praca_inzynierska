@@ -9,8 +9,13 @@
 }
 
 .card-login{
-    width: 30vw;
-    margin: auto;
+  width: 30vw;
+  position: absolute; 
+  left: 0; 
+  right: 0; 
+  top:90px;
+  margin-left: auto; 
+  margin-right: auto; 
 }
 mat-card-title{
   justify-content: center;

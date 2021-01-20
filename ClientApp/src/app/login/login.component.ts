@@ -17,16 +17,17 @@ export class LoginComponent implements OnInit {
   }
   constructor(private service: UserService, private router: Router) { }
 
+
   ngOnInit() {
     if (localStorage.getItem('token') != null)
-      this.router.navigateByUrl('');
+      this.router.navigateByUrl('application/home');
   }
 
   onSubmit(form: NgForm) {
     this.service.login(form.value).subscribe(
       (res: any) => {
         localStorage.setItem('token', res.token);
-        this.router.navigateByUrl('');
+        this.router.navigateByUrl('application/home');
       },
       err => {
         if (err.status == 400)

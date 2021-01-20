@@ -31,7 +31,7 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
     if (localStorage.getItem('token') != null)
-      this.router.navigateByUrl('');
+      this.router.navigateByUrl('application/home');
 
     this.resetForm();
   }
@@ -40,7 +40,7 @@ export class RegisterComponent implements OnInit {
     this.service.register().subscribe(
       (res: any) => {
         if (res.succeeded) {
-          this.service.formModel.reset();
+          this.router.navigateByUrl('login');
           console.log("Tworzenie użytkownika zakończone sukcesem");
           alert("Tworzenie użytkownika zakończone sukcesem");
         } else {

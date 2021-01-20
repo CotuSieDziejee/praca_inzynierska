@@ -29,6 +29,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { AuthGuard } from './auth/auth.guard';
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
+import { ApplicationComponent } from './application/application.component';
 
 
 
@@ -48,7 +49,8 @@ import { ForbiddenComponent } from './forbidden/forbidden.component';
     MojeTrasyComponent,
     LoginComponent,
     RegisterComponent,
-    ForbiddenComponent
+    ForbiddenComponent,
+    ApplicationComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -65,15 +67,21 @@ import { ForbiddenComponent } from './forbidden/forbidden.component';
     MatDatepickerModule,
     MatNativeDateModule,
     RouterModule.forRoot([
-      { path: '', component: StronaGlownaComponent, canActivate: [AuthGuard] },
-      { path: 'generator', component: GeneratorContainerComponent, canActivate: [AuthGuard], data: { permittedRoles: ['Admin', 'Logistician'] } },
-      { path: 'kierowcy', component: KierowcyComponent, canActivate: [AuthGuard], data: { permittedRoles: ['Admin'] } },
-      { path: 'logistycy', component: LogistycyComponent, canActivate: [AuthGuard], data: { permittedRoles: ['Admin'] } },
-      { path: 'profil', component: ProfilComponent, canActivate: [AuthGuard], data: { permittedRoles: ['Admin', 'Driver', 'Logistician'] } },
-      { path: 'mojeTrasy', component: MojeTrasyComponent, canActivate: [AuthGuard], data: { permittedRoles: ['Admin', 'Driver', 'Logistician'] } },
+      { path: '', redirectTo: 'login', pathMatch: 'full' },
+      {
+        path: 'application', component: ApplicationComponent, canActivate: [AuthGuard], children: [
+          { path: 'home', component: StronaGlownaComponent, canActivate: [AuthGuard] },
+          { path: 'generator', component: GeneratorContainerComponent, canActivate: [AuthGuard], data: { permittedRoles: ['Admin', 'Logistician'] } },
+          { path: 'kierowcy', component: KierowcyComponent, canActivate: [AuthGuard], data: { permittedRoles: ['Admin'] } },
+          { path: 'logistycy', component: LogistycyComponent, canActivate: [AuthGuard], data: { permittedRoles: ['Admin'] } },
+          { path: 'profil', component: ProfilComponent, canActivate: [AuthGuard], data: { permittedRoles: ['Admin', 'Driver', 'Logistician'] } },
+          { path: 'mojeTrasy', component: MojeTrasyComponent, canActivate: [AuthGuard], data: { permittedRoles: ['Admin', 'Driver', 'Logistician'] } },
+          { path: 'forbidden', component: ForbiddenComponent },
+        ]
+      },
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
-      { path: 'forbidden', component: ForbiddenComponent },
+
     ]),
     BrowserAnimationsModule,
     MatSidenavModule,

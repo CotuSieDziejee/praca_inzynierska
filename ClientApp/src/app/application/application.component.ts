@@ -1,14 +1,14 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html'
+  selector: 'app-application',
+  templateUrl: './application.component.html',
+  styleUrls: ['./application.component.css']
 })
-export class AppComponent {
-  title = 'app';
+export class ApplicationComponent implements OnInit {
+
+  constructor() { }
   sideBarOpen = true;
-
-
   @Output() toggleSideBarOutput: EventEmitter<any> = new EventEmitter();
   toggleSideBar() {
     this.toggleSideBarOutput.emit();
@@ -16,7 +16,7 @@ export class AppComponent {
   sideBarToogler() {
     this.sideBarOpen = !this.sideBarOpen;
   }
-  getUrl() {
-    return "url('../assets/mountaineer.png')";
+  ngOnInit() {
   }
+
 }
