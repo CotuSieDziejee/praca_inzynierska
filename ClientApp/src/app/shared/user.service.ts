@@ -50,6 +50,15 @@ export class UserService {
   getUserProfile() {
     return this.http.get(this.BaseURI + '/UserProfile');
   }
+  getUsersAdmins() {
+    return this.http.get(this.BaseURI + '/UsersWithRoles/Admins');
+  }
+  getUsersLogisticians() {
+    return this.http.get(this.BaseURI + '/UsersWithRoles/Logisticians');
+  }
+  getUsersDrivers() {
+    return this.http.get(this.BaseURI + '/UsersWithRoles/Drivers');
+  }
 
   roleMatch(allowedRoles): boolean {
     var isMatch = false;

@@ -13,9 +13,8 @@ import { SidebarComponent } from './shared/components/sidebar/sidebar.component'
 import { MatDividerModule, MatIconModule, MatMenuModule, MatSidenavModule, MatToolbarModule, MatListModule, MatButtonModule, MatCardModule, MatInputModule, MatTableModule, MatCheckboxModule, MatRadioModule, MatDatepickerModule, MatNativeDateModule, MatSelectModule, MatStepperModule, MatPaginatorModule, MatSortModule } from '@angular/material';
 import { FlexLayoutModule, StyleUtils, StylesheetMap, LayoutStyleBuilder, MediaMarshaller, LayoutAlignStyleBuilder, LayoutGapStyleBuilder, FlexStyleBuilder } from '@angular/flex-layout';
 import { ɵMatchMedia, BreakPointRegistry, PrintHook } from '@angular/flex-layout/core';
-import { KierowcyComponent } from './kierowcy/kierowcy.component';
-import { LogistycyComponent } from './logistycy/logistycy.component';
 import { ProfilComponent } from './profil/profil.component';
+import { PracownicyComponent } from './pracownicy/pracownicy.component';
 import { AgmCoreModule } from '@agm/core';
 import { AgmDirectionModule } from 'agm-direction';
 import { NgxMatDatetimePickerModule, NgxMatTimepickerModule, NgxMatNativeDateModule } from '@angular-material-components/datetime-picker';
@@ -30,8 +29,7 @@ import { AuthGuard } from './auth/auth.guard';
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
 import { ApplicationComponent } from './application/application.component';
-
-
+import { MatExpansionModule } from '@angular/material/expansion';
 
 @NgModule({
   declarations: [
@@ -41,14 +39,13 @@ import { ApplicationComponent } from './application/application.component';
     GeneratorComponent,
     HeaderComponent,
     SidebarComponent,
-    KierowcyComponent,
-    LogistycyComponent,
     ProfilComponent,
     GeneratorContainerComponent,
     KierowcyGeneratorComponent,
     MojeTrasyComponent,
     LoginComponent,
     RegisterComponent,
+    PracownicyComponent,
     ForbiddenComponent,
     ApplicationComponent
   ],
@@ -64,6 +61,7 @@ import { ApplicationComponent } from './application/application.component';
     FormsModule,
     NgxMatNativeDateModule,
     ReactiveFormsModule,
+    MatExpansionModule,
     MatDatepickerModule,
     MatNativeDateModule,
     RouterModule.forRoot([
@@ -72,8 +70,7 @@ import { ApplicationComponent } from './application/application.component';
         path: 'application', component: ApplicationComponent, canActivate: [AuthGuard], children: [
           { path: 'home', component: StronaGlownaComponent, canActivate: [AuthGuard] },
           { path: 'generator', component: GeneratorContainerComponent, canActivate: [AuthGuard], data: { permittedRoles: ['Admin', 'Logistician'] } },
-          { path: 'kierowcy', component: KierowcyComponent, canActivate: [AuthGuard], data: { permittedRoles: ['Admin'] } },
-          { path: 'logistycy', component: LogistycyComponent, canActivate: [AuthGuard], data: { permittedRoles: ['Admin'] } },
+          { path: 'pracownicy', component: PracownicyComponent, canActivate: [AuthGuard], data: { permittedRoles: ['Admin'] } },
           { path: 'profil', component: ProfilComponent, canActivate: [AuthGuard], data: { permittedRoles: ['Admin', 'Driver', 'Logistician'] } },
           { path: 'mojeTrasy', component: MojeTrasyComponent, canActivate: [AuthGuard], data: { permittedRoles: ['Admin', 'Driver', 'Logistician'] } },
           { path: 'forbidden', component: ForbiddenComponent },

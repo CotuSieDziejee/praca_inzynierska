@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PracaInzynierskaAPI.Models
 {
-    public class AuthenticationContext : IdentityDbContext
+    public class AuthenticationContext : IdentityDbContext<ApplicationUser>
     {
         public AuthenticationContext(DbContextOptions options) : base(options)
         {

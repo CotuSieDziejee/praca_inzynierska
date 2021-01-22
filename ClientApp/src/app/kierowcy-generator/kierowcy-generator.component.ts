@@ -1,28 +1,16 @@
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
+import { Component, OnInit, ViewChildren, QueryList, AfterViewInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { SelectionModel } from '@angular/cdk/collections';
+import { MatSort } from '@angular/material/sort';
+import { UserService } from '../shared/user.service';
+import { MatPaginator } from '@angular/material/paginator';
 
-export interface Pracownicy {
+export interface Kierowcy {
   id: number;
-  imie: string;
-  nazwisko: string;
+  fullName: string;
+  email: string;
 }
 
-
-const WORKERS_DATA: Pracownicy[] = [
-  { id: 1, imie: 'Hydrogen', nazwisko: 'H' },
-  { id: 2, imie: 'Helium', nazwisko: 'He' },
-  { id: 3, imie: 'Lithium', nazwisko: 'Li' },
-  { id: 4, imie: 'Beryllium', nazwisko: 'Be' },
-  { id: 5, imie: 'Boron', nazwisko: 'B' },
-  { id: 6, imie: 'Carbon', nazwisko: 'C' },
-  { id: 7, imie: 'Nitrogen', nazwisko: 'N' },
-  { id: 8, imie: 'Oxygen', nazwisko: 'O' },
-  { id: 9, imie: 'Fluorine', nazwisko: 'F' },
-  { id: 10, imie: 'Neon', nazwisko: 'Ne' },
-];
 
 @Component({
   selector: 'app-kierowcy-generator',
@@ -31,71 +19,105 @@ const WORKERS_DATA: Pracownicy[] = [
 })
 export class KierowcyGeneratorComponent implements AfterViewInit {
 
-  public kierowcy: any = {};
-  public disabled: boolean = false;
-  public Imie: string = "Jan";
-  public Nazwisko: string = "Kowalski";
+  public rolapracownikaKierowcy: any = {};
+  public idpracownikaKierowcy: any = {};
+  public imieinazwiskopracownikaKierowcy: any = {};
+  public emailpracownikaKierowcy: any = {};
 
-  displayedColumns: string[] = ['select', 'id', 'imie', 'nazwisko'];
-  dataSource: MatTableDataSource<Pracownicy>;
-  selection = new SelectionModel<Pracownicy>(true, []);
+  AdminUsers;
+  LogisticianUsers;
+  DriverUsers;
 
-  @ViewChild(MatPaginator, { static: false }) paginator
-  @ViewChild(MatSort, { static: false }) sort
+  public disabledKierowcy: boolean = false;
+  public idKierowcy: number = 0;
+  public fullNameKierowcy: string = "Jan Kowalski";
+  public emailKierowcy: string = "mail@mail.com";
+  public roleKierowcy: number = 1;
+  public roleNameKierowcy: string = "";
 
-  constructor() {
+  displayedColumnsKierowcy: string[] = ['select', 'id', 'fullName', 'email'];
 
-    this.dataSource = new MatTableDataSource<Pracownicy>(WORKERS_DATA);
+  selectionKierowcy = new SelectionModel<Kierowcy>(true, []);
+
+  @ViewChildren(MatPaginator) paginator = new QueryList<MatPaginator>();
+  @ViewChildren(MatSort) sort = new QueryList<MatSort>();
+
+  constructor(private service: UserService) {
+
   }
   ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+    this.dataSourceKierowcy.paginator = this.paginator.toArray()[0];
+    this.dataSourceKierowcy.sort = this.sort.toArray()[0];
+
   }
 
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+  public dataSourceKierowcy = new MatTableDataSource<Kierowcy>();
 
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
+  ngOnInit() {
+    this.service.getUsersDrivers().subscribe(
+      res => {
+        this.dataSourceKierowcy.data = res as Kierowcy[];
+      },
+      err => {
+        console.log(err);
+      },
+    );
+  }
+  applyFilterKierowcy(event: Event) {
+    const filterValueKierowcy = (event.target as HTMLInputElement).value;
+    this.dataSourceKierowcy.filter = filterValueKierowcy.trim().toLowerCase();
+
+    if (this.dataSourceKierowcy.paginator) {
+      this.dataSourceKierowcy.paginator.firstPage();
     }
   }
-  isAllSelected() {
-    const numSelected = this.selection.selected.length;
-    const numRows = this.dataSource.data.length;
-    return numSelected === numRows;
+
+  isAllSelectedKierowcy() {
+    const numSelectedKierowcy = this.selectionKierowcy.selected.length;
+    const numRowsKierowcy = this.dataSourceKierowcy.data.length;
+    return numSelectedKierowcy === numRowsKierowcy;
   }
-  masterToggle() {
-    this.isAllSelected() ?
-      this.selection.clear() :
-      this.dataSource.data.forEach(row => this.selection.select(row));
+
+  masterToggleKierowcy() {
+    this.isAllSelectedKierowcy() ?
+      this.selectionKierowcy.clear() :
+      this.dataSourceKierowcy.data.forEach(row => this.selectionKierowcy.select(row));
   }
-  checkboxLabel(row?: Pracownicy): string {
+
+  checkboxLabelKierowcy(row?: Kierowcy): string {
     if (!row) {
       console.log(!row);
-      return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
+      return `${this.isAllSelectedKierowcy() ? 'select' : 'deselect'} all`;
     }
-    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.id + 1}`;
-  }
-  getRecord(row) {
-
-  }
-  updateCheckedList() {
-    this.kierowcy = this.selection.selected.map(x => x.imie);
-    this.Imie = this.kierowcy;
-    console.log(this.Imie);
-    this.disabled = !this.disabled;
+    return `${this.selectionKierowcy.isSelected(row) ? 'deselect' : 'select'} row ${row.id + 1}`;
   }
 
-  selectAll() {
-    this.isAllSelected() ?
-      this.selection.clear() :
-      this.dataSource.data.forEach(row => this.selection.isSelected(row));
+  updateCheckedListKierowcy() {
+    this.imieinazwiskopracownikaKierowcy = this.selectionKierowcy.selected.map(x => x.fullName);
+    this.idpracownikaKierowcy = this.selectionKierowcy.selected.map(x => x.id);
+    this.emailpracownikaKierowcy = this.selectionKierowcy.selected.map(x => x.email);
+
+    this.fullNameKierowcy = this.imieinazwiskopracownikaKierowcy;
+    this.idKierowcy = this.idpracownikaKierowcy;
+    this.emailKierowcy = this.emailpracownikaKierowcy;
+
+    this.disabledKierowcy = !this.disabledKierowcy;
   }
 
-  edit() {
-    this.kierowcy = [];
-    this.disabled = !this.disabled;
+  selectAllKierowcy() {
+    this.isAllSelectedKierowcy() ?
+      this.selectionKierowcy.clear() :
+      this.dataSourceKierowcy.data.forEach(row => this.selectionKierowcy.isSelected(row));
+  }
+
+
+  editKierowcy() {
+    this.imieinazwiskopracownikaKierowcy = [];
+    this.idpracownikaKierowcy = [];
+    this.rolapracownikaKierowcy = [];
+
+
+    this.disabledKierowcy = !this.disabledKierowcy;
   }
 }
 

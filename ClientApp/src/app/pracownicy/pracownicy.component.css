@@ -1,0 +1,48 @@
+table {
+    width: 100%;
+  }
+
+.menu-container{
+    margin: 15px;
+}
+
+::ng-deep .specific-class > .mat-expansion-indicator:after {
+    color: white;
+  }
+
+  input{
+    width: 200px;
+}
+
+#edit{
+  margin-left: 10px;
+}
+
+.mat-column-id {
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  flex: 0 0 28% !important;
+  width: 28% !important;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+
+  word-break: break-word;
+
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+
+.inputs{
+  display: flex;
+  flex-direction: row;
+}
+
+.form-group{
+  margin-right: 10px;
+}
+
+button{
+  margin-right: 10px;
+}

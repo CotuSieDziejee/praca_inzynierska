@@ -1,24 +1,81 @@
 <div class="container">
-    <mat-card class="card" id="first-card">
-        <mat-card-title>Zdjęcie profilowe</mat-card-title>
-        <mat-card-content><img src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Zdjęcie profilowe">
-        </mat-card-content>
-        <mat-card-actions><button mat-raised-button color="primary">Zmień zdjęcie</button></mat-card-actions>
-    </mat-card>
     <mat-card class="card">
         <mat-card-title>Dane dotyczące konta</mat-card-title>
-        <mat-card-content>Aplikacja pozwala na generowanie tras, bazując na API wspieranym przez Google.<br>
-            Funkcjonalność generatora możliwa jest tylko z poziomu użytkownika z prawami "Logistyk" oraz
-            "Administrator".<br><br>
-            Usuwanie użytkowników z uprawnieniami "Kierowca" oraz "Logistyk" możliwe jest z poziomu użytkownika z
-            prawami
-            "Administrator".<br><br>
-            Użytkownicy z prawami "Logistyk" oraz "Administrator" mają możliwość podglądu wygenerowanych tras
-            "Kierowców".
+        <mat-card-content>
+            <br>
+            <div id="img">
+                <img src={{profileImage}} alt="Zdjęcie profilowe">
+            </div>
+            <br>
+            <p><b>Imię i nazisko:</b> {{userDetails.fullName}}</p>
+            <p><b>Email:</b> {{userDetails.email}}</p>
+            <p><b>Nazwa użytkownika:</b> {{userDetails.userName}}</p>
+            <br>
+            <mat-accordion class="example-headers-align" multi>
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            <mat-icon>account_circle</mat-icon>
+                        </mat-panel-title>
+                        <mat-panel-description>
+                            Edytuj imię i nazwisko / email / nazwę użytkownika
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <div class="form-group">
+                        <label>Imię i nazwisko</label>
+                        <input type="text" class="form-control" value={{userDetails.fullName}} required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" class="form-control" value={{userDetails.email}} required>
+                    </div>
+                    <div class="form-group">
+                        <label>Nazwa użytkownika</label>
+                        <input type="text" class="form-control" value={{userDetails.userName}} required>
+                    </div>
+                    <br>
+                    <button mat-raised-button color="accent" type="submit" id="password">Edytuj</button>
+                </mat-expansion-panel>
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            <mat-icon>locker</mat-icon>
+                        </mat-panel-title>
+                        <mat-panel-description>
+                            Edytuj hasło
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <div class="form-group">
+                        <label>Stare hasło</label>
+                        <input type="password" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Nowe hasło</label>
+                        <input type="password" class="form-control" required>
+                    </div>
+                    <br>
+                    <button mat-raised-button color="accent" type="submit" id="password">Zmień
+                        hasło</button>
+
+                </mat-expansion-panel>
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            <mat-icon>delete</mat-icon>
+                        </mat-panel-title>
+                        <mat-panel-description>
+                            Usuń konto
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <br>
+                    <p>Aby usunąć konto, użyj przycisku "Usuń konto". Pamiętaj, że wyszystkie dane przypisane do tego
+                        konta zostaną usunięte.</p>
+                    <br>
+                    <button mat-raised-button color="warn" id="delete">Usuń konto</button>
+                    <br>
+                </mat-expansion-panel>
+            </mat-accordion>
         </mat-card-content>
-        <mat-card-actions>
-            <button mat-raised-button color="primary">Zapisz zmiany</button>
-            <button mat-raised-button color="warn">Usuń konto</button>
-        </mat-card-actions>
+
     </mat-card>
 </div>

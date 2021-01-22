@@ -1,0 +1,201 @@
+<mat-card class="card">
+    <mat-card-subtitle>Logistycy</mat-card-subtitle>
+    <mat-card-content>
+        <mat-form-field>
+            <mat-label>Podaj dane</mat-label>
+            <input matInput (keyup)="applyFilterLogistycy($event)" placeholder="Jan Kowalski" #input>
+        </mat-form-field>
+
+
+        <table mat-table [dataSource]="dataSourceLogistycy" matSort>
+            <!-- Checkbox Column -->
+            <ng-container matColumnDef="select">
+                <th mat-header-cell *matHeaderCellDef>
+
+                </th>
+                <td mat-cell *matCellDef="let row;let i=index">
+                    <mat-checkbox [disabled]='disabledLogistycy' (click)="getRecord(row)"
+                        (change)="$event ? selectionLogistycy.toggle(row) : null"
+                        [checked]="selectionLogistycy.isSelected(row)" [aria-label]="checkboxLabelLogistycy(row)">
+                    </mat-checkbox>
+                </td>
+            </ng-container>
+            <!-- ID Column -->
+            <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+                <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+            </ng-container>
+
+            <!-- Progress Column -->
+            <ng-container matColumnDef="fullName">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Imię i nazwisko </th>
+                <td mat-cell *matCellDef="let row"> {{row.fullName}} </td>
+            </ng-container>
+
+            <!-- Progress Column -->
+            <ng-container matColumnDef="email">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
+                <td mat-cell *matCellDef="let row"> {{row.email}} </td>
+            </ng-container>
+
+            <!-- Progress Column -->
+            <ng-container matColumnDef="userName">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Nazwa użytkownika </th>
+                <td mat-cell *matCellDef="let row"> {{row.userName}} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumnsLogistycy"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumnsLogistycy;"></tr>
+
+            <!-- Row shown when there is no matching data. -->
+            <tr class="mat-row" *matNoDataRow>
+                <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+            </tr>
+        </table>
+        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+        <br><br>
+
+        <br><br>
+
+        <button mat-raised-button color="primary" class="button" [disabled]='disabledLogistycy'
+            (click)="updateCheckedListLogistycy()">Wybierz</button>
+        <button mat-raised-button *ngIf="disabledLogistycy" color="primary" class="button" id="edit"
+            [disabled]='!disabledLogistycy' (click)="editLogistycy()">Zmień</button>
+        <br><br>
+        <mat-accordion class="example-headers-align" multi>
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <mat-icon>account_circle</mat-icon>
+                    </mat-panel-title>
+                    <mat-panel-description>
+                        Edytuj uprawnienia użytkownika
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+                <section class="inputs">
+                    <div class="form-group">
+                        <label>Id pracownika</label>
+                        <input type="text" class="form-control" value={{idLogistycy}} disabled>
+                    </div>
+                    <div class="form-group">
+                        <label>Imię i nazwisko</label>
+                        <input type="text" class="form-control" value={{fullNameLogistycy}} disabled>
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="text" class="form-control" value={{emailLogistycy}} disabled>
+                    </div>
+                </section>
+                <br>
+                <button mat-raised-button color="accent" type="submit" [disabled]='!disabledLogistycy'>Zmień role na
+                    "Kierowca"</button>
+                <button mat-raised-button color="warn" type="submit" [disabled]='!disabledLogistycy'>Usuń</button>
+            </mat-expansion-panel>
+        </mat-accordion>
+    </mat-card-content>
+</mat-card>
+<br><br>
+
+
+
+
+
+
+
+
+<mat-card class="card">
+    <mat-card-subtitle>Kierowcy</mat-card-subtitle>
+    <mat-card-content>
+        <mat-form-field>
+            <mat-label>Podaj dane</mat-label>
+            <input matInput (keyup)="applyFilterKierowcy($event)" placeholder="Jan Kowalski" #input>
+        </mat-form-field>
+
+
+        <table mat-table [dataSource]="dataSourceKierowcy" matSort>
+            <!-- Checkbox Column -->
+            <ng-container matColumnDef="select">
+                <th mat-header-cell *matHeaderCellDef>
+
+                </th>
+                <td mat-cell *matCellDef="let row;let i=index">
+                    <mat-checkbox [disabled]='disabledKierowcy' (click)="getRecord(row)"
+                        (change)="$event ? selectionKierowcy.toggle(row) : null"
+                        [checked]="selectionKierowcy.isSelected(row)" [aria-label]="checkboxLabelKierowcy(row)">
+                    </mat-checkbox>
+                </td>
+            </ng-container>
+            <!-- ID Column -->
+            <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+                <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+            </ng-container>
+
+            <!-- Progress Column -->
+            <ng-container matColumnDef="fullName">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Imię i nazwisko </th>
+                <td mat-cell *matCellDef="let row"> {{row.fullName}} </td>
+            </ng-container>
+
+            <!-- Progress Column -->
+            <ng-container matColumnDef="email">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
+                <td mat-cell *matCellDef="let row"> {{row.email}} </td>
+            </ng-container>
+
+            <!-- Progress Column -->
+            <ng-container matColumnDef="userName">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Nazwa użytkownika </th>
+                <td mat-cell *matCellDef="let row"> {{row.userName}} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumnsKierowcy"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumnsKierowcy;"></tr>
+
+            <!-- Row shown when there is no matching data. -->
+            <tr class="mat-row" *matNoDataRow>
+                <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+            </tr>
+        </table>
+        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+        <br><br>
+
+        <br><br>
+
+        <button mat-raised-button color="primary" class="button" [disabled]='disabledKierowcy'
+            (click)="updateCheckedListKierowcy()">Wybierz</button>
+        <button mat-raised-button *ngIf="disabledKierowcy" color="primary" class="button" id="edit"
+            [disabled]='!disabledKierowcy' (click)="editKierowcy()">Zmień</button>
+        <br><br>
+        <mat-accordion class="example-headers-align" multi>
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <mat-icon>account_circle</mat-icon>
+                    </mat-panel-title>
+                    <mat-panel-description>
+                        Edytuj uprawnienia użytkownika
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+                <section class="inputs">
+                    <div class="form-group">
+                        <label>Id pracownika</label>
+                        <input type="text" class="form-control" value={{idKierowcy}} disabled>
+                    </div>
+                    <div class="form-group">
+                        <label>Imię i nazwisko</label>
+                        <input type="text" class="form-control" value={{fullNameKierowcy}} disabled>
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="text" class="form-control" value={{emailKierowcy}} disabled>
+                    </div>
+                </section>
+                <br>
+                <button mat-raised-button color="accent" type="submit" [disabled]='!disabledKierowcy'>Zmień role na
+                    "Logistyk"</button>
+                <button mat-raised-button color="warn" type="submit" [disabled]='!disabledKierowcy'>Usuń</button>
+            </mat-expansion-panel>
+        </mat-accordion>
+    </mat-card-content>
+</mat-card>
