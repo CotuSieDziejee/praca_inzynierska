@@ -7,6 +7,10 @@ import { UserService } from '../shared/user.service';
 })
 export class ProfilComponent implements OnInit {
   userDetails;
+  fullName;
+  email;
+  userName;
+
   public profileImage = '../../../../assets/user-blank.png';
   constructor(private service: UserService) { }
 

@@ -1,12 +1,17 @@
 <mat-nav-list>
     <div class="profile-card" *ngIf="userDetails">
-        <div class="header">
-            <h4>{{userDetails.fullName}}</h4>
-        </div>
-        <img src={{profileImage}} alt="Zdjęcie profilowe">
+        <br>
+        <img src="../../../../assets/logo.png" alt="logo">
     </div>
     <mat-divider></mat-divider>
-
+    <div *ngIf="userDetails">
+        <h2 matSubheader>Dane użytkownika</h2>
+        <p class="user-data"><b>Imię i nazisko:</b> {{userDetails.fullName}}</p>
+        <p class="user-data"><b>Email:</b> {{userDetails.email}}</p>
+        <p class="user-data"><b>Nazwa użytkownika:</b> {{userDetails.userName}}</p>
+        <br>
+    </div>
+    <mat-divider></mat-divider>
     <h2 matSubheader>Podstrony</h2>
 
     <a mat-list-item routerLinkActive="list-item-active" routerLink="home">Strona główna</a>

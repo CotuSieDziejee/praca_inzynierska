@@ -10,7 +10,7 @@ using PracaInzynierskaAPI.Models;
 namespace PracaInzynierskaAPI.Migrations
 {
     [DbContext(typeof(AuthenticationContext))]
-    [Migration("20210122202115_Initial")]
+    [Migration("20210123032326_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

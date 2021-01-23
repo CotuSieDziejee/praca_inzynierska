@@ -8,6 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidebarComponent implements OnInit {
   userDetails;
+  fullName;
+  email;
+  userName;
+
   public profileImage = '../../../../assets/user-blank.png';
   constructor(private service: UserService) { }
 

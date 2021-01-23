@@ -2,14 +2,13 @@
     <mat-card class="card">
         <mat-card-title>Dane dotyczące konta</mat-card-title>
         <mat-card-content>
+
             <br>
-            <div id="img">
-                <img src={{profileImage}} alt="Zdjęcie profilowe">
+            <div *ngIf="userDetails">
+                <p><b>Imię i nazisko:</b> {{userDetails.fullName}}</p>
+                <p><b>Email:</b> {{userDetails.email}}</p>
+                <p><b>Nazwa użytkownika:</b> {{userDetails.userName}}</p>
             </div>
-            <br>
-            <p><b>Imię i nazisko:</b> {{userDetails.fullName}}</p>
-            <p><b>Email:</b> {{userDetails.email}}</p>
-            <p><b>Nazwa użytkownika:</b> {{userDetails.userName}}</p>
             <br>
             <mat-accordion class="example-headers-align" multi>
                 <mat-expansion-panel>
