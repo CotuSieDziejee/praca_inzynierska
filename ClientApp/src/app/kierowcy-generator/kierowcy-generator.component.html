@@ -48,7 +48,7 @@
 <br><br>
 <button mat-raised-button color="accent" [disabled]='disabled' (click)="masterToggle()">Zaznacz/odznacz
     wszystkie</button>
-<button mat-raised-button color="primary" class="button" [disabled]='disabled'
-    (click)="updateCheckedList()">Dodaj</button>
-<button mat-raised-button *ngIf="disabled" color="primary" class="button" [disabled]='!disabled'
-    (click)="edit()">Edytuj</button>
+<button mat-raised-button color="primary" class="button" [disabled]='disabledKierowcy'
+    (click)="updateCheckedListKierowcy()">Wybierz</button>
+<button mat-raised-button *ngIf="disabledKierowcy" color="primary" class="button" id="edit"
+    [disabled]='!disabledKierowcy' (click)="editKierowcy()">Zmień</button>

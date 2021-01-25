@@ -2,11 +2,10 @@
     <mat-card class="card" id="card2">
         <mat-card-content>
 
-            <agm-map [latitude]="latitude" [longitude]="longitude">
+            <agm-map [latitude]="latitude" [longitude]="longitude" [streetViewControl]=false>
                 <agm-direction [origin]="origin" [destination]="destination" [waypoints]="waypoints" [panel]="myPanel"
                     [avoidFerries]="avoidFerries" [avoidHighways]="avoidHighways" [avoidTolls]="avoidTolls"
-                    [provideRouteAlternatives]="provideRouteAlternatives" [optimizeWaypoints]="optimizeWaypoints"
-                    [drivingOptions]="drivingOptions">
+                    [provideRouteAlternatives]="provideRouteAlternatives" [optimizeWaypoints]="optimizeWaypoints">
                 </agm-direction>
             </agm-map>
 
@@ -61,25 +60,31 @@
         <mat-card-content>
             <p>Unikaj promów</p>
             <mat-radio-group>
-                <mat-radio-button [checked]="avoidFerries" value="true" (change)="FerriesTrue($event)">Tak
+                <mat-radio-button [checked]="avoidFerries" value="true" (change)="FerriesTrue($event)"
+                    [disabled]="!disabled">Tak
                 </mat-radio-button>
-                <mat-radio-button [checked]="!avoidFerries" value="false" (change)="FerriesFalse($event)">Nie
+                <mat-radio-button [checked]="!avoidFerries" value="false" (change)="FerriesFalse($event)"
+                    [disabled]="!disabled">Nie
                 </mat-radio-button>
             </mat-radio-group>
 
             <p>Unikaj autostrad</p>
             <mat-radio-group>
-                <mat-radio-button [checked]="avoidHighways" value="true" (change)="HighwaysTrue($event)">Tak
+                <mat-radio-button [checked]="avoidHighways" value="true" (change)="HighwaysTrue($event)"
+                    [disabled]="!disabled">Tak
                 </mat-radio-button>
-                <mat-radio-button [checked]="!avoidHighways" value="false" (change)="HighwaysFalse($event)">Nie
+                <mat-radio-button [checked]="!avoidHighways" value="false" (change)="HighwaysFalse($event)"
+                    [disabled]="!disabled">Nie
                 </mat-radio-button>
             </mat-radio-group>
 
             <p>Unikaj opłat</p>
             <mat-radio-group>
-                <mat-radio-button [checked]="avoidTolls" value="true" (change)="TollsTrue($event)">Tak
+                <mat-radio-button [checked]="avoidTolls" value="true" (change)="TollsTrue($event)"
+                    [disabled]="!disabled">Tak
                 </mat-radio-button>
-                <mat-radio-button [checked]="!avoidTolls" value="false" (change)="TollsFalse($event)">Nie
+                <mat-radio-button [checked]="!avoidTolls" value="false" (change)="TollsFalse($event)"
+                    [disabled]="!disabled">Nie
                 </mat-radio-button>
             </mat-radio-group>
             <br><br>

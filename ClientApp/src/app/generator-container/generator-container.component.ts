@@ -20,6 +20,7 @@ export class GeneratorContainerComponent implements OnInit {
     this.secondFormGroup = this._formBuilder.group({
       secondCtrl: ['', Validators.required]
     });
+
   }
 
 }

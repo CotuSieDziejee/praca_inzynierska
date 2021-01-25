@@ -1,0 +1,84 @@
+agm-map{
+    height: 71vh;
+}
+
+#second-card{
+    margin-top: 20px;
+}
+
+input{
+    width: 100%;
+}
+#container{
+    display: flex;
+    flex-direction: row;
+}
+#container2{
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+}
+#container3{
+    display: flex;
+    flex-direction: row;
+}
+.card{
+    width: 50%;
+    margin: 10px;
+}
+#card1{
+    margin-right: 20px;
+    width: 100%;
+    height: 76vh;
+    max-height: 50vh;
+    overflow: scroll;
+}
+#list-of-address{
+    height: 100%;
+    overflow: scroll;
+    max-height: 100%;
+}
+#card2{
+    width: 70%;
+    height: 76vh;
+    flex-direction: row;
+}
+#card3{
+    width: 30%;
+    overflow: scroll;
+    max-height: 76vh;
+}
+#card4{
+    width: 100%;
+}
+#card5{
+    width: 40%;
+    margin-left: 40px;
+}
+.address{
+    margin: 20px;
+}
+#address-content{
+    height: 100%;
+}
+
+button{
+    margin-right: 10px;
+}
+
+mat-radio-button{
+    margin-left: 20px;
+}
+
+.date{
+    margin-top: 15px;
+}
+
+.input{
+    width: 100%;
+}
+
+.select{
+    margin-left: 10px;
+    margin-bottom: -30px;
+}

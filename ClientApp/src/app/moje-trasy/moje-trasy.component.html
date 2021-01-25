@@ -1,1 +1,25 @@
-<p>moje-trasy works!</p>
+<mat-form-field appearance="fill" class="select">
+    <mat-label>Trasa1</mat-label>
+    <mat-select [(value)]="selected">
+        <mat-option value="Trasa1">Trasa1</mat-option>
+    </mat-select>
+</mat-form-field>
+<div id="container">
+    <mat-card class="card" id="card2">
+        <mat-card-content>
+
+            <agm-map [latitude]="latitude" [longitude]="longitude" [streetViewControl]=false>
+                <agm-direction [origin]="origin" [destination]="destination" [waypoints]="waypoints" [panel]="myPanel"
+                    [avoidFerries]="avoidFerries" [avoidHighways]="avoidHighways" [avoidTolls]="avoidTolls"
+                    [provideRouteAlternatives]="provideRouteAlternatives" [optimizeWaypoints]="optimizeWaypoints">
+                </agm-direction>
+            </agm-map>
+
+        </mat-card-content>
+    </mat-card>
+    <mat-card class="card" id="card3">
+        <mat-card-content>
+            <div #myPanel id="panel"></div>
+        </mat-card-content>
+    </mat-card>
+</div>

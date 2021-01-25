@@ -37,7 +37,7 @@ export class KierowcyGeneratorComponent implements AfterViewInit {
 
   displayedColumnsKierowcy: string[] = ['select', 'id', 'fullName', 'email'];
 
-  selectionKierowcy = new SelectionModel<Kierowcy>(true, []);
+  selectionKierowcy = new SelectionModel<Kierowcy>(false, []);
 
   @ViewChildren(MatPaginator) paginator = new QueryList<MatPaginator>();
   @ViewChildren(MatSort) sort = new QueryList<MatSort>();
@@ -102,6 +102,9 @@ export class KierowcyGeneratorComponent implements AfterViewInit {
     this.emailKierowcy = this.emailpracownikaKierowcy;
 
     this.disabledKierowcy = !this.disabledKierowcy;
+    console.log("imie i nazwisko: " + this.fullNameKierowcy +
+      "\nid: " + this.idKierowcy +
+      "\nemail: " + this.emailKierowcy)
   }
 
   selectAllKierowcy() {

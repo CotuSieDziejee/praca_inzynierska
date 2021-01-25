@@ -32,9 +32,11 @@ export class GeneratorComponent implements OnInit {
   public disabled: boolean = true;
 
 
+
+
   constructor(private mapsAPILoader: MapsAPILoader, private ngZone: NgZone) { }
-  public origin;
-  public destination;
+  public origin: any = {};
+  public destination: any = {};
   public waypoints = [];
 
   reset() {
@@ -78,6 +80,8 @@ export class GeneratorComponent implements OnInit {
 
   generuj() {
 
+
+
     for (var _i = 0; _i < this.latlongs.length; _i++) {
       var num = this.latlongs[_i];
       if (_i === 0) {
@@ -92,6 +96,15 @@ export class GeneratorComponent implements OnInit {
       }
     }
     this.disabled = !this.disabled;
+
+    console.log("avoidFerries: " + this.avoidFerries +
+      "\n avoidHighways: " + this.avoidHighways +
+      "\n avoidTolls: " + this.avoidTolls +
+      "\n provideRouteAlternatives: " + this.provideRouteAlternatives +
+      "\n optimizeWaypoints: " + this.optimizeWaypoints +
+      "\n origin:" + JSON.stringify(this.origin) +
+      "\n waypoints:" + JSON.stringify(this.waypoints) +
+      "\n destination:" + JSON.stringify(this.destination));
   }
 
   ngOnInit() {
