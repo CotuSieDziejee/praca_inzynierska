@@ -1,4 +1,5 @@
-# System-supporting-routing-in-a-logistics-company
+# System supporting routing in a logistics company
+System wspierający planowanie tras w firmie logistycznej
 
 Aplikacja pozwalająca na generowaniee tras pomiędzy ponktami znajdującymi się na mapie. 
 System pozwala na dostęp do danych poprzez przeglądarkę internetową W
